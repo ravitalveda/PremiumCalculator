@@ -1,0 +1,52 @@
+﻿@using PremiumCalculator.Models
+@model IEnumerable<PremiumModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Premium Calculator</title>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body style="text-align: center;">
+
+    <div style="width: 100%; height: 50px !important; background-color: azure;">
+        <h1>Premium Calculator</h1>
+    </div>
+
+    <hr />
+
+    @using (Html.BeginForm("Index", "Premium", FormMethod.Post))
+    {
+        <input class="btn-danger" type="submit" value="Calculate Premiums" />
+    }
+    @if (Model.Any())
+    {
+        <hr />
+        <table class="table table-striped">
+            
+            <tr>
+                <th style="text-align: center">Alpha</th>
+                <th style="text-align: center">Beta</th>
+                <th style="text-align: center">Age</th>
+                <th style="text-align: center">Rating</th>
+            </tr>
+            @foreach (var pr in Model)
+            {
+                <tr>
+                    <td>@pr.Alpha</td>
+                    <td>@pr.Beta</td>
+                    <td>@pr.AgePoints</td>
+                    <td>@pr.Rating</td>
+                </tr>
+            }
+        </table>
+    }
+</body>
+</html>
+
